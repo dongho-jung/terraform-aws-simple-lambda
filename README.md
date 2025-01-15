@@ -27,7 +27,7 @@ A terraform module for Simple Lambda deployment
 ```terraform
 module "simple_lambda" {
    source  = "dongho-jung/simple-lambda/aws"
-   version = "~> 1.0.0"
+   version = "~> 1.0"
    
    name = "simple-lambda"
    description = "simple lambda"
@@ -38,7 +38,7 @@ module "simple_lambda" {
 ```terraform
 module "simple_lambda" {
    source  = "dongho-jung/simple-lambda/aws"
-   version = "~> 1.0.0"
+   version = "~> 1.0"
    
    name = "simple-lambda-cron"
    description = "simple lambda with scheduling with cron"
@@ -51,7 +51,7 @@ module "simple_lambda" {
 ```terraform
 module "simple_lambda" {
    source  = "dongho-jung/simple-lambda/aws"
-   version = "~> 1.0.0"
+   version = "~> 1.0"
    
    name = "simple-lambda-cloudwatch-alarm"
    description = "simple lambda mapping with cloudwatch alarm"
@@ -66,7 +66,7 @@ module "simple_lambda" {
 ```terraform
 module "simple_lambda" {
    source  = "dongho-jung/simple-lambda/aws"
-   version = "~> 1.0.0"
+   version = "~> 1.0"
    
    name = "simple-lambda-extra-permissions"
    description = "simple lambda with extra permissions"
@@ -90,7 +90,7 @@ module "simple_lambda" {
 ```terraform
 module "simple_lambda" {
    source  = "dongho-jung/simple-lambda/aws"
-   version = "~> 1.0.0"
+   version = "~> 1.0"
    
    name = "simple-lambda-python-uv"
    description = "simple lambda using python uv"
