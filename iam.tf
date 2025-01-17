@@ -1,5 +1,19 @@
+locals {
+  do_create_role = (
+  (var.iam_role_name == null) && (
+  (var.iam_statements != []) || (var.iam_policy_arns != [])
+  )
+  )
+
+  iam_policy_arns = (
+    var.vpc_subnet_names != []
+    ? concat(["arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"], var.iam_policy_arns)
+    : var.iam_policy_arns
+  )
+}
+
 resource "aws_iam_role" "this" {
-  count = (length(var.iam_statements) > 0) || (length(var.iam_policy_arns) > 0) ? 1 : 0
+  count = local.do_create_role ? 1 : 0
 
   name = var.name
   assume_role_policy = jsonencode({
@@ -28,8 +42,8 @@ resource "aws_iam_role_policy" "this" {
 }
 
 resource "aws_iam_role_policy_attachment" "additional" {
-  for_each = toset(var.iam_policy_arns)
+  for_each = toset(local.iam_policy_arns)
 
-  role       = one(aws_iam_role.this[*].name)
+  role = one(aws_iam_role.this[*].name)
   policy_arn = each.value
 }
