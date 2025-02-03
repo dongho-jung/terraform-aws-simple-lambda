@@ -6,7 +6,7 @@ locals {
   )
 
   iam_policy_arns = (
-    (var.vpc_subnet_names != []) && (var.iam_role_name == null)
+    var.vpc_subnet_names != []
     ? concat(["arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"], var.iam_policy_arns)
     : var.iam_policy_arns
   )
@@ -42,7 +42,13 @@ resource "aws_iam_role_policy" "this" {
 }
 
 resource "aws_iam_role_policy_attachment" "additional" {
-  for_each = toset(local.iam_policy_arns)
+  for_each = (
+    var.iam_role_name == null
+    ?
+    toset(local.iam_policy_arns)
+    :
+    toset([])
+  )
 
   role = one(aws_iam_role.this[*].name)
   policy_arn = each.value
