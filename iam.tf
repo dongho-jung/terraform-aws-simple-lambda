@@ -6,7 +6,7 @@ locals {
   )
 
   iam_policy_arns = (
-    var.vpc_subnet_names != []
+    (var.vpc_subnet_names != []) && (var.iam_role_name == null)
     ? concat(["arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"], var.iam_policy_arns)
     : var.iam_policy_arns
   )
