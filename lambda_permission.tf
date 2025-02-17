@@ -15,7 +15,7 @@ resource "aws_lambda_permission" "alarms" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.this.function_name
   principal     = "events.amazonaws.com"
-  source_arn    = aws_cloudwatch_event_rule.alarms[count.index].arn
+  source_arn    = one(aws_cloudwatch_event_rule.alarms[*].arn)
 }
 
 resource "aws_lambda_permission" "event_bridges" {
