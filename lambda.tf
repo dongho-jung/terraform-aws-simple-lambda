@@ -54,7 +54,8 @@ resource "aws_lambda_function" "this" {
 
   depends_on = [
     docker_image.this,
-    null_resource.docker_push
+    null_resource.docker_push,
+    aws_cloudwatch_log_group.this
   ]
 }
 

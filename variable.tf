@@ -45,6 +45,12 @@ variable "maximum_retry_attempts" {
   description = "Maximum retry attempts of lambda function"
 }
 
+variable "log_rentention_in_days" {
+  type        = number
+  default     = null
+  description = "Log retention in days of lambda function"
+}
+
 
 ########################################
 # Optional Variables - Using
