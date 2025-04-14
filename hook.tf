@@ -6,7 +6,7 @@ locals {
   )
   before_build_hook_command = (
     var.using_uv
-    ? "uv export > requirements.txt"
+    ? "uv export --no-dev > requirements.txt"
     : "true"
   )
 }
