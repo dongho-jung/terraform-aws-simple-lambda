@@ -34,8 +34,8 @@ resource "aws_lambda_permission" "cloudwatch_log_subscription_filters" {
   statement_id  = "AllowExecutionFromCloudWatchLogSubscriptionFilters"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.this.function_name
-  principal     = "logs.${data.aws_region.current.name}.amazonaws.com"
-  source_arn    = "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:*:*"
+  principal     = "logs.${data.aws_region.current.region}.amazonaws.com"
+  source_arn    = "arn:aws:logs:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:log-group:*:*"
 }
 
 resource "aws_lambda_permission" "sns_topics" {

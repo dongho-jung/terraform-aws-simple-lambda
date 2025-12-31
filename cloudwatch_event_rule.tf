@@ -18,7 +18,7 @@ resource "aws_cloudwatch_event_rule" "alarms" {
     ],
     "resources" : [
       for i, v in var.event_source_cloudwatch_alarm_names :
-      "arn:aws:cloudwatch:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:alarm:${var.event_source_cloudwatch_alarm_names[i]}"
+      "arn:aws:cloudwatch:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:alarm:${var.event_source_cloudwatch_alarm_names[i]}"
     ]
   })
 }
