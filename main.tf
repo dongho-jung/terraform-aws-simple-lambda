@@ -10,11 +10,11 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "5.82.2"
+      version = "6.27.0"
     }
     docker = {
-      source  = "kreuzwerker/docker"
-      version = "3.0.2"
+      source = "registry.opentofu.org/kreuzwerker/docker"
+      version = "~> 3.9.0"
     }
     null = {
       source  = "hashicorp/null"
