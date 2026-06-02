@@ -13,7 +13,7 @@ terraform {
       version = "6.27.0"
     }
     docker = {
-      source = "registry.opentofu.org/kreuzwerker/docker"
+      source  = "registry.opentofu.org/kreuzwerker/docker"
       version = "~> 3.9.0"
     }
     null = {

@@ -1,8 +1,8 @@
 locals {
   do_create_role = (
-  (var.iam_role_name == null) && (
-  (var.iam_statements != []) || (var.iam_policy_arns != [])
-  )
+    (var.iam_role_name == null) && (
+      (var.iam_statements != []) || (var.iam_policy_arns != [])
+    )
   )
 
   iam_policy_arns = (
@@ -50,6 +50,6 @@ resource "aws_iam_role_policy_attachment" "additional" {
     toset([])
   )
 
-  role = one(aws_iam_role.this[*].name)
+  role       = one(aws_iam_role.this[*].name)
   policy_arn = each.value
 }
