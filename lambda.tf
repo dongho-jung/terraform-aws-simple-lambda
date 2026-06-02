@@ -45,6 +45,14 @@ resource "aws_lambda_function" "this" {
   memory_size = var.memory_size
   timeout     = var.timeout
 
+  dynamic "ephemeral_storage" {
+    for_each = var.ephemeral_storage_size == null ? [] : [true]
+
+    content {
+      size = var.ephemeral_storage_size
+    }
+  }
+
   role = var.iam_role_name == null ? one(aws_iam_role.this[*].arn) : "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/${var.iam_role_name}"
 
   vpc_config {

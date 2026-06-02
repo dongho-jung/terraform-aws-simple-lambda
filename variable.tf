@@ -27,6 +27,17 @@ variable "memory_size" {
   description = "Memory size of lambda function"
 }
 
+variable "ephemeral_storage_size" {
+  type        = number
+  default     = null
+  description = "Size of the ephemeral storage (/tmp) in MB. Valid value between 512 MB and 10,240 MB (10 GB)"
+
+  validation {
+    condition     = var.ephemeral_storage_size == null ? true : (var.ephemeral_storage_size >= 512 && var.ephemeral_storage_size <= 10240)
+    error_message = "ephemeral_storage_size must be between 512 and 10240 (MB)."
+  }
+}
+
 variable "timeout" {
   type        = number
   default     = null
